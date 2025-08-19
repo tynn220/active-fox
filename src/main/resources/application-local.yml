@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 30000
+      max-lifetime: 2000000
+      maximum-pool-size: 10
+      minimum-idle: 2
+    url: secret
+    username: secret
+    password: secret
+  data:
+    redis:
+      port: 19591
+      host: localhost
+      password: localhost
+      database: 0
+      lettuce:
+        pool:
+          max-active: 100
+          max-idle: 10
+          min-idle: 10
+      timeout: 60000
+
+  thread:
+    queueCapacity: 10
+    maxPoolSize: 100
+    prefix: RB-Thread
+    corePoolSize: 50
+  cloud:
+    vault:
+      enabled: false

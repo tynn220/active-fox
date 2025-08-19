@@ -1,0 +1,64 @@
+server:
+#  max-http-header-size: 256KB
+springdoc:
+  swagger-ui:
+    path: /docs
+    url: /v3/api-docs
+    disable-swagger-default-url: true
+#logging:
+#  file:
+#    name: /home/ec2-user/app/logs/app.log
+#  level:
+#    root: INFO
+
+spring:
+  application:
+    name: ActiveFox
+  profiles:
+    active: local
+  cloud:
+    vault:
+      host: ${VAULT_HOST}
+      port: ${VAULT_PORT}
+      scheme: ${VAULT_SCHEME}
+      token: ${VAULT_TOKEN}
+      kv:
+        enabled: true
+        backend: ${spring.profiles.active}
+        profile-separator: '/'
+        default-context:
+        application-name: ${spring.application.name}
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+    time-zone: Asia/Ho_Chi_Minh
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: destinythien@gmail.com
+#    password: ykob idts qssh tnhp
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+management:
+  endpoint:
+    health:
+      enabled: true
+      group:
+        liveness:
+          include: livenessState,cacheCheck
+        readiness:
+          include: readinessState,db,redis
+      show-details: always
+    logfile:
+      external-file: logs/application.log
+    loggers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+authen:
+  secret-key: UtopiaBrosService@27022025@LeYThien

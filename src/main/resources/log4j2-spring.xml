@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{DEFAULT} %highlight{%-5level} [%X{traceId},%X{spanId}] [%style{%t}{bright,blue}] %style{%C{1.}}{bright,green}: %msg%n%throwable" disableAnsi="false"/>
+        </Console>
+        <RollingFile name="RollingFile"
+                     fileName="/home/ec2-user/app/logs/app.log"
+                     filePattern="/home/ec2-user/app/logs/app-$${date:yyyy-MM}/application-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d [%X{traceId},%X{spanId}] %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches
+                    10 MegaBytes -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                        size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- LOG everything at INFO level -->
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+        <!-- LOG "vn.fundiin*" at TRACE level -->
+        <Logger name="thien.application*" level="trace"/>
+    </Loggers>
+
+</Configuration>
