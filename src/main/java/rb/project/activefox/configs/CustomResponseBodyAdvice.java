@@ -9,7 +9,7 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import thien.application.utilserivces.redis.service.LoggingService;
+import rb.project.activefox.utilserivces.redis.service.LoggingService;
 
 @ControllerAdvice
 @RequiredArgsConstructor

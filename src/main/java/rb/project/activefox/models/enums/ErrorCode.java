@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
     TOO_MANY_REQUESTS("9", "too.many-requests"),
+    TOKEN_INVALID("8", "request.token.invalid"),
     BAD_REQUEST("10", "request.bad"),
     ;
 
